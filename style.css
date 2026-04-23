@@ -1,261 +1,201 @@
+/* Retro Windows 98 style using 98.css (import) + custom adjustments for the chat app */
+@import url('https://cdn.jsdelivr.net/npm/98.css/css/98.css');
+
+/* Base layout */
 body {
-  background-color: #1d1d1d;
-  color: #f1f1f1;
-  font-family: Inter;
+  background: #c0c0c0; /* classic windows gray */
+  color: #000;
+  font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-@font-face {
-  font-family: Inter;
-  src: url(fonts/Inter.ttf);
-}
-
-.spacer {
-  height: 10vh;
-}
-
-* {
-  font-family: Inter;
-}
-
+/* Main app container (centered, like an app window) */
 #app {
-  width: px;
+  width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 16px;
   flex: 1;
-  border-radius: 30px;
 }
 
-#auth-section, 
-#chat-section {
-  width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 30px;
-  background-color: #3d3d3d;
-  transition: 0.3s;
-  transition: height 0.3s ease;
-}
-
-#auth-section {
-  width: 400px;
-  transition: 0.3s;
-}
-
-h1 {
-  text-align: center;
-  color: white;
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-
-#room-title {
-  text-align: center;
-  color: white;
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  margin-top: 0;
-  font-size: 35px;
-}
-
-#auth-section input,
-#auth-section button,
-#chat-section input,
-#chat-section button {
-  padding: 15px;
-  margin: 10px 0;
-  font-size: 1.1em;
-  border-radius: 17px;
-  border: none;
+/* Generic reset for inputs/buttons to use 98 look */
+* {
   box-sizing: border-box;
 }
 
+/* Windows 98 style "windows" for auth and chat sections */
+#auth-section,
+#chat-section {
+  background: #e0e0e0;
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0 rgba(0,0,0,1);
+  padding: 12px;
+  margin: 18px auto;
+}
+
+#auth-section {
+  width: 420px;
+}
+
+#chat-section {
+  width: 820px;
+}
+
+/* Title bar style (mimic 98.css .title-bar) */
+h1, #room-title {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Small title-bar like label above each window */
+.window-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+/* Inputs and buttons: use squared 98 style */
+input[type="text"],
+input[type="password"],
+textarea,
 button {
-  background-color: #1f51ff;
-  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 6px 8px;
+  margin: 8px 0;
+  border: 2px solid #000;
+  background: linear-gradient(#fff, #d0d0d0);
+  color: #000;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 2px rgba(0,120,215,0.15);
+}
+
+button {
   cursor: pointer;
-  border: none;
-  transition: 0.2s ease;
-  width: 200px;
-}
-
-button:hover {
-  scale: 1.05;
-}
-
-#chat-box {
-  height: 350px; 
-  overflow-y: auto;
-  background-color: white;
-  padding: 20px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border-radius: 30px;
-  color: black;
-}
-
-#message-input {
-  width: 100%;
   display: inline-block;
-  font-size: 1.1em;
+  min-width: 80px;
+  padding: 6px 10px;
+  text-align: center;
+}
+
+/* Primary button variation (blue like selected 98 buttons) */
+button.primary {
+  background: linear-gradient(#1f51ff, #0f2bff);
+  color: #fff;
+  border: 2px solid #000;
+}
+
+/* Hover states */
+button:hover {
+  filter: brightness(0.95);
+}
+
+/* Chat box styled as a classic window content area */
+#chat-box {
+  height: 350px;
+  overflow-y: auto;
+  background: #fff;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #000;
+  color: #000;
+  font-size: 13px;
+}
+
+/* Message input and send button layout */
+#message-input {
+  width: calc(100% - 110px);
+  vertical-align: middle;
+  padding: 8px;
 }
 
 #send-btn {
-  width: 80px;
-  padding: 14px;
-  font-size: 1.1em;
-  border-radius: 15px;
-  width: 300px;
+  width: 100px;
+  padding: 8px;
+  margin-left: 8px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
-.container2 {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
+/* Leave room button styled as danger but with 98 aesthetic */
 #leave-room-btn {
-  margin-top: 10px;
-  background-color: #ff4c4c;
-  width: 300px;
+  background: linear-gradient(#ffb3b3, #ff6b6b);
+  border: 2px solid #000;
+  color: #000;
 }
 
+/* Footer and madeby bar (classic taskbar-like) */
 .footer {
   text-align: center;
-  padding: 10px;
-  color: #ccc;
-  font-size: 21px;
-  margin-top: auto;
-}
-
-.footer a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.footer a:hover {
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 0;
+  padding: 8px;
+  color: #000;
+  font-size: 13px;
+  margin-top: 18px;
 }
 
 .madeby {
-  color: white;
-  font-size: 14;
-  font-weight: 500;
+  color: #000;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(#bfbfbf, #9f9f9f);
+  border-top: 2px solid #000;
+}
+
+.madeby a, .footer a {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Toast notifications: mimic a small 98 dialog sliding in */
+.toast, .toast2 {
+  visibility: hidden;
+  min-width: 240px;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
   padding: 10px;
   position: fixed;
-  width: 99%;
-  bottom: 0;
-  justify-self: center;
-  text-align: center;
-  background-color: #1f51ff;
-}
-
-.madeby a {
-  color: white;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.toast {
-  visibility: hidden;
-  min-width: 250px;
-  background-color: white;
-  color: black;
-  text-align: center;
-  border-radius: 15px;
-  font-family: Inter;
-  padding: 20px;
-  position: fixed;
-  top: 20px;
-  right: -300px;
-  z-index: 1;
-  font-size: 16px;
-  opacity: 0;
-  transition: visibility 0.3s, opacity 0.3s ease;
-}
-
-.toast.show {
-  visibility: visible;
-  right: 10px;
-  opacity: 1;
-  animation: slideInRight 0.5s, slideOutRight 0.5s 5.5s; /* Slide out after 2.5 seconds */
-}
-
-@keyframes slideInRight {
-  from {
-    right: -500px;
-    opacity: 0;
-  }
-  to {
-    right: 10px;
-    opacity: 1;
-  }
-}
-
-@keyframes slideOutRight {
-  from {
-    right: 10px;
-    opacity: 1;
-  }
-  to {
-    right: -500px;
-    opacity: 0;
-  }
-}
-
-#room-id:hover {
-  cursor: pointer;
-  color: #1f51ff;
-}
-
-#room-id {
-  transition: 0.2s ease;
-}
-
-.toast2 {
-  position: fixed;
-  top: 20px;
-  right: -460px; /* Initially hidden, off-screen */
-  background-color: white;
-  color: black;
-  padding: 20px 20px;
-  border-radius: 15px;
-  font-size: 16px;
+  top: 16px;
+  right: -360px;
   z-index: 9999;
-  transition: right 0.3s ease-in-out; /* Slide-in animation */
+  transition: right 0.25s ease-in-out, opacity 0.25s;
+  opacity: 0;
 }
 
-.toast2.show {
-  right: 10px; /* Moves the toast into view */
+.toast.show, .toast2.show {
+  right: 16px;
+  opacity: 1;
+  visibility: visible;
 }
 
-#clicktocopy {
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  font-style: italic;
-  margin-top: -10px;
-  top: -10px;
-}
+/* Room id pointer style */
+#room-id:hover { cursor: pointer; color: #0000ff; }
 
-.general {
-  font-size: 16px;
-  font-weight: 500;
-  color: white;
-  font-style: italic;
-  margin-top: -5px;
-  margin-bottom: -25px;
+/* Misc layout helpers */
+.container { display: flex; justify-content: center; }
+.container2 { display: flex; justify-content: center; flex-direction: column; }
+
+/* Make scrollbars small but visible in the retro style */
+#chat-box::-webkit-scrollbar { width: 12px; }
+#chat-box::-webkit-scrollbar-thumb { background: #c0c0c0; border: 2px solid #fff; }
+
+/* Keep accessibility: high-contrast focus outlines */
+:focus { outline: 3px solid rgba(0,120,215,0.25); }
+
+/* Minor responsive adjustments */
+@media (max-width: 920px) {
+  #chat-section, #auth-section, #app { width: 96%; }
+  #message-input { width: calc(100% - 110px); }
 }
